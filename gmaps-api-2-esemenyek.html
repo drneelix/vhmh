@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  #terkep {
+    height: 600px; 
+    width: 1200px; 
+  }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBJfOBMDhJtfrf7-lrYam1Wkr_mj6Sublc"></script>
+<script type="text/javascript">
+  var map;
+  
+  function initialize() {
+    var latlng = new google.maps.LatLng(46.6704899, 21.0434996);
+	    var myOptions = {
+      zoom: 9,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+	    
+    map = new google.maps.Map(document.getElementById("terkep"), myOptions);
+    
+	var bekes = new google.maps.LatLng (46.6704899, 21.0434996);
+	var marker = new google.maps.Marker({position:bekes});
+	marker.setMap(map);
+	
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+      document.getElementById("zoom").innerHTML = map.getZoom();
+      document.getElementById("lat").innerHTML = map.getCenter().lat();
+      document.getElementById("lng").innerHTML = map.getCenter().lng();
+    });    
+  }
+</script>
+</head>
+<body onload="initialize()">
+  <center><div id="terkep"></div></center>
+  <!--<p>
+    Zoom: <span id="zoom"></span><br />
+    Center Lat: <span id="lat"></span><br />
+    Center Lng: <span id="lng"></span>
+  </p>-->
+</body>
+</html>
